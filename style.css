@@ -1,27 +1,27 @@
 /* ==========================================
-   1. VARIABEL WARNA & RESET DASAR
+1. VARIABEL WARNA & RESET DASAR (SAGE GREEN & AESTHETIC PINK)
    ========================================== */
 :root {
-  --primary: #7B1E3A;        /* Maroon utama */
-  --primary-dark: #581228;   /* Maroon gelap untuk hover */
-  --accent-pink: #F472B6;    /* Pink aksen */
-  --soft-pink: #FDF2F8;      /* Pink sangat lembut untuk latar */
-  --bg-page: #F9F5F6;        /* Latar luar aplikasi */
-  --bg-card: #FFFFFF;        /* Warna kartu putih */
-  --text-main: #2D1B22;      /* Teks utama gelap */
-  --text-muted: #6E5660;     /* Teks sekunder abu-abu hangat */
-  --border-color: #EADCE1;   /* Garis tepi lembut */
+  --primary: #4A7C59;        /* Sage Green utama yang kalem & aesthetic */
+  --primary-dark: #355E42;   /* Hijau hutan lembut untuk efek hover & gradasi */
+  --accent-pink: #F48FB1;    /* Pink pastel manis sebagai aksen */
+  --soft-pink: #FFF0F5;      /* Pink blush sangat lembut untuk latar kartu/item */
+  --bg-page: #F4F7F5;        /* Latar luar aplikasi hijau keabuan sangat muda */
+  --bg-card: #FFFFFF;        /* Warna kartu putih bersih */
+  --text-main: #26382C;      /* Teks utama hijau gelap (lebih lembut dari hitam) */
+  --text-muted: #687D70;     /* Teks sekunder hijau keabuan */
+  --border-color: #DCE6DF;   /* Garis tepi hijau pastel lembut */
 
   /* Warna status keuangan */
-  --income-color: #15803D;
-  --income-bg: #DCFCE7;
-  --expense-color: #BE123C;
-  --expense-bg: #FFE4E6;
+  --income-color: #2E7D32;
+  --income-bg: #E8F5E9;
+  --expense-color: #C2185B;
+  --expense-bg: #FCE4EC;
   --warning-color: #B45309;
   --warning-bg: #FEF3C7;
 
   --radius: 16px;
-  --shadow: 0 4px 16px rgba(123, 30, 58, 0.08);
+  --shadow: 0 4px 16px rgba(74, 124, 89, 0.08);
 }
 
 * {
@@ -52,7 +52,7 @@ body {
 }
 
 /* ==========================================
-   2. STYLE FITUR PEMBUKA (OPENING SCREEN)
+2. STYLE FITUR PEMBUKA (OPENING SCREEN)
    ========================================== */
 .opening-screen {
   min-height: calc(100vh - 32px);
@@ -74,13 +74,13 @@ body {
 .app-badge {
   display: inline-block;
   background-color: var(--soft-pink);
-  color: var(--primary);
+  color: var(--expense-color);
   font-size: 0.78rem;
   font-weight: 700;
   padding: 4px 12px;
   border-radius: 999px;
   margin-bottom: 16px;
-  border: 1px solid #FBCFE8;
+  border: 1px solid #F8BBD0;
 }
 
 .logo-circle {
@@ -93,7 +93,7 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 2rem;
-  box-shadow: 0 8px 20px rgba(123, 30, 58, 0.25);
+  box-shadow: 0 8px 20px rgba(74, 124, 89, 0.25);
 }
 
 .opening-card h1 {
@@ -116,6 +116,7 @@ body {
   border-radius: 14px;
   margin-bottom: 22px;
   font-size: 0.86rem;
+  border: 1px solid #FCE4EC;
 }
 
 .feature-list li {
@@ -147,7 +148,7 @@ body {
 }
 
 /* ==========================================
-   3. HEADER & KARTU DASHBOARD UTAMA
+3. HEADER & KARTU DASHBOARD UTAMA
    ========================================== */
 .app-header {
   display: flex;
@@ -256,7 +257,7 @@ body {
 }
 
 .cashflow-box {
-  background-color: rgba(255, 255, 255, 0.12);
+  background-color: rgba(255, 255, 255, 0.14);
   padding: 10px 12px;
   border-radius: 12px;
 }
@@ -273,7 +274,7 @@ body {
 }
 
 /* ==========================================
-   4. FORM & TOMBOL
+4. FORM & TOMBOL
    ========================================== */
 .inline-form {
   display: flex;
@@ -349,8 +350,8 @@ input:focus, select:focus {
 
 .btn-secondary {
   background-color: var(--soft-pink);
-  color: var(--primary);
-  border: 1.5px solid #FBCFE8;
+  color: var(--expense-color);
+  border: 1.5px solid #F8BBD0;
   white-space: nowrap;
 }
 
@@ -380,7 +381,7 @@ input:focus, select:focus {
 }
 
 /* ==========================================
-   5. DAFTAR RIWAYAT TRANSAKSI
+5. DAFTAR RIWAYAT TRANSAKSI
    ========================================== */
 .history-header {
   display: flex;
@@ -414,7 +415,7 @@ input:focus, select:focus {
   padding: 12px;
   border-radius: 12px;
   background-color: var(--soft-pink);
-  border: 1px solid var(--border-color);
+  border: 1px solid #FCE4EC;
 }
 
 .tx-info {
@@ -454,7 +455,7 @@ input:focus, select:focus {
 
 .btn-delete-tx {
   background: #FFFFFF;
-  border: 1px solid var(--border-color);
+  border: 1px solid #F8BBD0;
   color: var(--text-muted);
   width: 28px;
   height: 28px;
