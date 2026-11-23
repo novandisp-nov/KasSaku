@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#7B1E3A">
+  <meta name="description" content="Aplikasi pencatat keuangan dan pengelolaan budget offline berbasis web.">
+  <title>KasSaku - Pengelola Uang & Budget</title>
+
+  <!-- Hubungkan ke CSS & Manifest PWA -->
+  <link rel="stylesheet" href="./style.css">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- ==========================================
+         BAGIAN 1: FITUR PEMBUKA (OPENING SCREEN)
+         ========================================== -->
+    <section id="opening-screen" class="opening-screen">
+      <div class="opening-card">
+        <div class="app-badge">100% Offline &amp; Privat</div>
+        <div class="logo-circle">💰</div>
+        <h1>KasSaku</h1>
+        <p class="subtitle">
+          Catat pemasukan, kendalikan pengeluaran, dan jaga batas budget harian atau bulanan langsung dari HP kamu.
+        </p>
+
+        <ul class="feature-list">
+          <li><span>✓</span> Data tersimpan aman di memori HP (tanpa internet)</li>
+          <li><span>✓</span> Pantau sisa budget otomatis dengan indikator warna</li>
+          <li><span>✓</span> Ringan &amp; bisa di-install ke layar utama HP</li>
+        </ul>
+
+        <div class="opening-actions">
+          <button type="button" id="btn-enter-app" class="btn btn-primary btn-block">
+            Mulai Kelola Uang &rarr;
+          </button>
+          <button type="button" id="btn-install" class="btn btn-outline btn-block hidden">
+            Install ke Layar Utama HP
+          </button>
+        </div>
+
+        <p class="privacy-note">
+          Catatan: Data disimpan di penyimpanan lokal browser perangkat ini.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         BAGIAN 2: FITUR INTI (DASHBOARD UTAMA)
+         ========================================== -->
+    <main id="main-app" class="main-app hidden">
+      
+      <!-- Header Aplikasi -->
+      <header class="app-header">
+        <div>
+          <h2>KasSaku</h2>
+          <p class="header-tagline">Dompet &amp; Kontrol Budget</p>
+        </div>
+        <button type="button" id="btn-back-intro" class="btn-icon" title="Lihat Info Aplikasi">
+          ℹ️
+        </button>
+      </header>
+
+      <!-- Kartu Ringkasan Saldo & Budget -->
+      <section class="card summary-card">
+        <div class="budget-header">
+          <span>Sisa Budget Kamu</span>
+          <span id="budget-status-badge" class="status-pill safe">Aman</span>
+        </div>
+        
+        <h3 id="remaining-budget" class="big-amount">Rp 0</h3>
+
+        <!-- Progress Bar Penggunaan Budget -->
+        <div class="progress-wrapper">
+          <div id="budget-progress-bar" class="progress-bar" style="width: 0%;"></div>
+        </div>
+        <div class="budget-meta">
+          <span>Terpakai: <strong id="total-expense-text">Rp 0</strong></span>
+          <span>Target Budget: <strong id="total-budget-text">Rp 0</strong></span>
+        </div>
+
+        <!-- Ringkasan Masuk & Keluar -->
+        <div class="cashflow-grid">
+          <div class="cashflow-box income">
+            <span class="label">Total Pemasukan</span>
+            <strong id="total-income">Rp 0</strong>
+          </div>
+          <div class="cashflow-box expense">
+            <span class="label">Total Pengeluaran</span>
+            <strong id="total-expense">Rp 0</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- Kartu Pengaturan Budget -->
+      <section class="card">
+        <h3 class="card-title">Atur Batas Budget</h3>
+        <form id="budget-form" class="inline-form">
+          <input 
+            type="number" 
+            id="budget-input" 
+            placeholder="Contoh: 500000" 
+            min="0" 
+            required
+          >
+          <button type="submit" class="btn btn-secondary">Simpan</button>
+        </form>
+      </section>
+
+      <!-- Kartu Tambah Transaksi -->
+      <section class="card">
+        <h3 class="card-title">Catat Transaksi Baru</h3>
+        <form id="transaction-form" class="stack-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="tx-type">Jenis</label>
+              <select id="tx-type" required>
+                <option value="expense">Pengeluaran (-)</option>
+                <option value="income">Pemasukan (+)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="tx-category">Kategori</label>
+              <select id="tx-category" required>
+                <option value="Makan & Jajan">Makan &amp; Jajan</option>
+                <option value="Transportasi">Transportasi</option>
+                <option value="Sekolah & Tugas">Sekolah &amp; Tugas</option>
+                <option value="Uang Saku">Uang Saku</option>
+                <option value="Lainnya">Lainnya</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="tx-amount">Nominal (Rp)</label>
+            <input 
+              type="number" 
+              id="tx-amount" 
+              placeholder="Contoh: 15000" 
+              min="1" 
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="tx-note">Catatan Singkat</label>
+            <input 
+              type="text" 
+              id="tx-note" 
+              placeholder="Contoh: Beli makan siang di kantin" 
+              maxlength="50" 
+              required
+            >
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">
+            + Tambah Catatan
+          </button>
+        </form>
+      </section>
+
+      <!-- Kartu Riwayat Transaksi -->
+      <section class="card">
+        <div class="history-header">
+          <h3 class="card-title">Riwayat Transaksi</h3>
+          <button type="button" id="btn-reset-all" class="btn-text-danger">Reset Semua</button>
+        </div>
+
+        <ul id="transaction-list" class="transaction-list">
+          <!-- Item transaksi akan dimasukkan lewat JavaScript -->
+          <li class="empty-state">Belum ada transaksi tercatat.</li>
+        </ul>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Hubungkan ke JavaScript -->
+  <script src="./app.js"></script>
+</body>
+</html>
