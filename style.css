@@ -1,0 +1,469 @@
+/* ==========================================
+   1. VARIABEL WARNA & RESET DASAR
+   ========================================== */
+:root {
+  --primary: #7B1E3A;        /* Maroon utama */
+  --primary-dark: #581228;   /* Maroon gelap untuk hover */
+  --accent-pink: #F472B6;    /* Pink aksen */
+  --soft-pink: #FDF2F8;      /* Pink sangat lembut untuk latar */
+  --bg-page: #F9F5F6;        /* Latar luar aplikasi */
+  --bg-card: #FFFFFF;        /* Warna kartu putih */
+  --text-main: #2D1B22;      /* Teks utama gelap */
+  --text-muted: #6E5660;     /* Teks sekunder abu-abu hangat */
+  --border-color: #EADCE1;   /* Garis tepi lembut */
+
+  /* Warna status keuangan */
+  --income-color: #15803D;
+  --income-bg: #DCFCE7;
+  --expense-color: #BE123C;
+  --expense-bg: #FFE4E6;
+  --warning-color: #B45309;
+  --warning-bg: #FEF3C7;
+
+  --radius: 16px;
+  --shadow: 0 4px 16px rgba(123, 30, 58, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* Kelas utilitas untuk menyembunyikan layar pembuka / halaman */
+.hidden {
+  display: none !important;
+}
+
+/* Pembungkus agar tampilan seperti aplikasi HP di tengah layar */
+.app-container {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 16px;
+}
+
+/* ==========================================
+   2. STYLE FITUR PEMBUKA (OPENING SCREEN)
+   ========================================== */
+.opening-screen {
+  min-height: calc(100vh - 32px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.opening-card {
+  background: var(--bg-card);
+  border-radius: 24px;
+  padding: 28px 22px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+  width: 100%;
+}
+
+.app-badge {
+  display: inline-block;
+  background-color: var(--soft-pink);
+  color: var(--primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+  border: 1px solid #FBCFE8;
+}
+
+.logo-circle {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 14px;
+  background: linear-gradient(135deg, var(--primary), var(--accent-pink));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  box-shadow: 0 8px 20px rgba(123, 30, 58, 0.25);
+}
+
+.opening-card h1 {
+  font-size: 1.8rem;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.feature-list {
+  list-style: none;
+  text-align: left;
+  background-color: var(--soft-pink);
+  padding: 14px 16px;
+  border-radius: 14px;
+  margin-bottom: 22px;
+  font-size: 0.86rem;
+}
+
+.feature-list li {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.feature-list li:last-child {
+  margin-bottom: 0;
+}
+
+.feature-list span {
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.opening-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.privacy-note {
+  margin-top: 16px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================
+   3. HEADER & KARTU DASHBOARD UTAMA
+   ========================================== */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 4px 2px;
+}
+
+.app-header h2 {
+  color: var(--primary);
+  font-size: 1.4rem;
+}
+
+.header-tagline {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+}
+
+.card-title {
+  font-size: 1rem;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+/* Kartu Ringkasan Budget */
+.summary-card {
+  background: linear-gradient(145deg, var(--primary), var(--primary-dark));
+  color: #FFFFFF;
+  border: none;
+}
+
+.budget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.88rem;
+  opacity: 0.92;
+}
+
+.status-pill {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.status-pill.safe {
+  background-color: var(--income-bg);
+  color: var(--income-color);
+}
+
+.status-pill.warning {
+  background-color: var(--warning-bg);
+  color: var(--warning-color);
+}
+
+.status-pill.danger {
+  background-color: var(--expense-bg);
+  color: var(--expense-color);
+}
+
+.big-amount {
+  font-size: 1.9rem;
+  margin: 6px 0 12px;
+  letter-spacing: -0.5px;
+}
+
+.progress-wrapper {
+  width: 100%;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: var(--accent-pink);
+  border-radius: 999px;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.budget-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  opacity: 0.9;
+  margin-bottom: 16px;
+}
+
+.cashflow-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.cashflow-box {
+  background-color: rgba(255, 255, 255, 0.12);
+  padding: 10px 12px;
+  border-radius: 12px;
+}
+
+.cashflow-box .label {
+  display: block;
+  font-size: 0.75rem;
+  opacity: 0.85;
+  margin-bottom: 2px;
+}
+
+.cashflow-box strong {
+  font-size: 0.95rem;
+}
+
+/* ==========================================
+   4. FORM & TOMBOL
+   ========================================== */
+.inline-form {
+  display: flex;
+  gap: 8px;
+}
+
+.stack-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-group label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+input, select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid var(--border-color);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  background-color: #FFFFFF;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus, select:focus {
+  border-color: var(--primary);
+}
+
+.btn {
+  padding: 11px 16px;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: #FFFFFF;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+}
+
+.btn-secondary {
+  background-color: var(--soft-pink);
+  color: var(--primary);
+  border: 1.5px solid #FBCFE8;
+  white-space: nowrap;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
+}
+
+.btn-icon {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn-text-danger {
+  background: none;
+  border: none;
+  color: var(--expense-color);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ==========================================
+   5. DAFTAR RIWAYAT TRANSAKSI
+   ========================================== */
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.history-header .card-title {
+  margin-bottom: 0;
+}
+
+.transaction-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  padding: 18px 0;
+}
+
+.tx-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-radius: 12px;
+  background-color: var(--soft-pink);
+  border: 1px solid var(--border-color);
+}
+
+.tx-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tx-note {
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.tx-meta {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+.tx-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tx-amount {
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.tx-amount.income {
+  color: var(--income-color);
+}
+
+.tx-amount.expense {
+  color: var(--expense-color);
+}
+
+.btn-delete-tx {
+  background: #FFFFFF;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.btn-delete-tx:hover {
+  color: var(--expense-color);
+  border-color: var(--expense-color);
+}
